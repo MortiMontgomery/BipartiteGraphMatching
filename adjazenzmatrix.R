@@ -1,5 +1,5 @@
-InputIncomings <- read.csv("~/Faranto/IncomingTest.csv")
-InputBuddys <- read.csv("~/Faranto/BuddyTest.csv", header = F)
+InputIncomings <- read.csv("~/****.csv")
+InputBuddys <- read.csv("~/****.csv", header = F)
 mergedMatrix=data.frame(IName=character(), ILand=character(),IeMail=character(), BName=character(), BeMail=character(), Bland1=character(),Bland2=character(),Bland3=character(),stringsAsFactors = F)
 
 test1 = makeAdj(InputIncomings, InputBuddys, mergedMatrix)
@@ -17,7 +17,7 @@ makeAdj=function(inc, bud, mergedMatrix)
 
     while(buddy<=nrow(bud))
     {
-      #prüfen der Länderspalten der Buddys mit Länderspalte Incoming
+      #testing if match
       if(as.character(inc[incoming,2])==as.character(bud[buddy,3]) | as.character(bud[buddy,3])=="keins" | as.character(inc[incoming,2])==as.character(bud[buddy,4]) | as.character(bud[buddy,4])=="keins" | as.character(inc[incoming,2])==as.character(bud[buddy,5]) | as.character(bud[buddy,5])=="keins" )
          {
           adjMatrix[incoming,buddy]=1 
@@ -35,11 +35,7 @@ makeAdj=function(inc, bud, mergedMatrix)
   #return(adjMatrix)
   
 }
-#IncomingTest <- read.csv("~/Faranto/IncomingTest.csv")
-#BuddyTest <- read.csv("~/Faranto/BuddyTest.csv")
-#makeAdj(IncomingTest, BuddyTest)
-#calcMaxMatch(makeAdj(IncomingTest, BuddyTest))
-#which(sol !=0, arr.ind = T)
+
 calcMaxMatch = function(adjMatrix, inc ,bud, mergedMatrix)
 {
   dummyColumns=c()
@@ -95,7 +91,7 @@ mergingTable = function(solution, inc ,bud, mergedMatrix)
     print(tempvector)
     #mergedMatrix[i,]=c(temporaryMatch[1],temporaryMatch[2],temporaryMatch[3], temporaryMatch[4], temporaryMatch[5], temporaryMatch[6],temporaryMatch[7],temporaryMatch[8])
     mergedMatrix[nrow(mergedMatrix)+1,]=tempvector
-    print("MERGED////////////////////////////////////////////")
+    print("MERGED")
     print(mergedMatrix)
    # mergedMatrix[nrow(mergedMatrix)+1,] <- temporaryMatch
     #print(bud[which(solution!=0, arr.ind=T)[i,2],])
@@ -110,7 +106,7 @@ mergingTable = function(solution, inc ,bud, mergedMatrix)
   {
     print("Zuordnung beendet")
     print(mergedMatrix)
-    write.csv(mergedMatrix, file="BuddyIncomingZuordnung.csv")
+    write.csv(mergedMatrix, file="*****.csv")
     return(mergedMatrix)
   } else {
     makeAdj(inc, bud, mergedMatrix)
