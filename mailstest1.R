@@ -18,11 +18,11 @@ test_email <- mime(
 send_message(test_email)
 ##########################################################################
 
-eMailList <- read.csv("~/Faranto/emailsTest.csv", header = T)
+eMailList <- read.csv("~/****.csv", header = T)
 
 this_hw <- "The Fellowship Of The Ring"
-email_sender <- 'Faranto <christian.vogel@faranto.de>'
-optional_bcc <- 'Anonymous <madamesilenz@web.de>'
+email_sender <- 'Anonymous1 <****>'
+optional_bcc <- 'Anonymous2 <****>'
 body <- "Hi, %s.
 Your Buddy is Christian
 "
@@ -48,10 +48,10 @@ saveRDS(sent_mail,
         paste(gsub("\\s+", "_", this_hw), "sent-emails.rds", sep = "_"))
 
 ######################
-eMailList <- read.csv("~/Faranto/emailsTest.csv", header = T)
+eMailList <- read.csv("****", header = T)
 
-#this_hw <- "The Fellowship Of The Ring"
-email_sender <- 'Faranto <christian.vogel@faranto.de>'
+
+email_sender <- 'Faranto <****>'
 body <- "Hi, %s.
 Your Buddy is Christian
 "
@@ -59,7 +59,7 @@ edat <- eMailList %>%
   mutate(
     To = sprintf('%s <%s>', name, email),
     From = email_sender,
-    Subject = sprintf('Your faranto-Buddy for your time in Germany!'),
+    Subject = sprintf('Subject123!'),
     body = sprintf(body, name, this_hw, mark)) %>%
   select(To, From, Subject, body)
 write_csv(edat, "composed-emails.csv")
