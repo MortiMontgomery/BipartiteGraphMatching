@@ -27,12 +27,9 @@ makeAdj=function(inc, bud, mergedMatrix)
     incoming=incoming+1
     buddy=1
   }
-  #calcMaxMatch(adjMatrix, inc, bud)
-  print("Calculated Adjacency ;Ataa")
-  print(adjMatrix)
+
   calcMaxMatch(adjMatrix, inc, bud, mergedMatrix)
   
-  #return(adjMatrix)
   
 }
 
@@ -48,7 +45,6 @@ calcMaxMatch = function(adjMatrix, inc ,bud, mergedMatrix)
   }
   while(dim(adjMatrix)[2]<dim(adjMatrix)[1])
   {
-    #dummyColumns=c(dummyRows,c(dim(adjMatrix)[2]+1))
     dummyColumns=c(dummyColumns,dim(adjMatrix)[2]+1)
     adjMatrix=cbind(adjMatrix, dummyVector)
   }
@@ -67,39 +63,21 @@ calcMaxMatch = function(adjMatrix, inc ,bud, mergedMatrix)
   print("Dummy Variablen geloescht:")
   print(solution)
   mergingTable(solution, inc, bud, mergedMatrix)
-  #return(solution)
 }
 mergingTable = function(solution, inc ,bud, mergedMatrix)
 {
-  #apply(solution, 1, function(x) inc[which(solution!=0, arr.ind=T)[x],] bud[which(solution!=0, arr.ind=T)[x],])
-  #print(which(solution!=0, arr.ind=T))
-  print(solution)
   matchIndices=which(solution!=0, arr.ind=T)
   print(matchIndices)
-  #print(inc[which(sol!=0, arr.ind=T)[1],])
   i=1
-  #"Name", "Land","eMail", "BName", "BeMail", "land1","land2","land3",
-  #mergedMatrix=data.frame("Name", "Land","eMail", "BName", "BeMail", "land1","land2","land3",stringsAsFactors = F)
-
+ 
   for(i in 1:dim(matchIndices)[1])
   {
-    #print(inc[matchIndices[i,1],])
-    print(matchIndices)
     temporaryMatch=cbind(inc[matchIndices[i,1],], bud[matchIndices[i,2],])
-    #temporaryMatch=inc[matchIndices[i,1],]
     tempvector=unlist(temporaryMatch[1,])
-    print(tempvector)
-    #mergedMatrix[i,]=c(temporaryMatch[1],temporaryMatch[2],temporaryMatch[3], temporaryMatch[4], temporaryMatch[5], temporaryMatch[6],temporaryMatch[7],temporaryMatch[8])
     mergedMatrix[nrow(mergedMatrix)+1,]=tempvector
-    print("MERGED")
     print(mergedMatrix)
-   # mergedMatrix[nrow(mergedMatrix)+1,] <- temporaryMatch
-    #print(bud[which(solution!=0, arr.ind=T)[i,2],])
   }
-  print(mergedMatrix)
-  ########################TODO
   print("Uebrig gebliebene Incomings:")
-  #solution=solution[-matchIndices[,1],]
   inc=inc[-matchIndices[,1],]
   print(inc)
   if(nrow(inc)==0) 
